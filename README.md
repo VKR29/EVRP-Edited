@@ -24,6 +24,39 @@ This repository implements a **time-optimal Electric Vehicle Routing Problem (EV
 
 ---
 
+## How to Run
+
+
+
+### A. Start the Charging Backend (Terminal 1)
+
+
+
+```bash
+
+cd evrp_charge_availability_backend
+
+.venv/bin/activate   # or .venvScriptsactivate on Windows
+
+python scripts/serve.py
+
+Backend runs at:
+
+http://###.0.0.1:8000
+```
+
+
+### B. Run EVRP Planner (Terminal 2)
+
+```bash
+cd evrp_india
+
+.venv/bin/activate
+
+python -m src.main
+
+```
+
 
 
 ## 1. What This Project Does
@@ -341,41 +374,5 @@ No animation or legends are used — the map is kept minimal and readable.
 
 
 ---
-
-
-
-## 6. How to Run
-
-
-
-### A. Start the Charging Backend (Terminal 1)
-
-
-
-```bash
-
-cd evrp_charge_availability_backend
-
-.venv/bin/activate   # or .venvScriptsactivate on Windows
-
-python scripts/serve.py
-
-Backend runs at:
-
-http://###.0.0.1:8000
-```
-
-
-### B. Run EVRP Planner (Terminal 2)
-
-```bash
-cd evrp_india
-
-.venv/bin/activate
-
-python -m src.main
-
-```
-
 
 
