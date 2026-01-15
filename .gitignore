@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# G-API
+.env
+
+# Virtual environment
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Cache / data
+data/cache/
+data/**/*.cache
+*.joblib
+*.parquet
+
+# Maps / outputs
+routes.html
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
