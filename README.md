@@ -363,11 +363,12 @@ python scripts/serve.py
 Backend runs at:
 
 http://###.0.0.1:8000
-
+```
 
 
 ### B. Run EVRP Planner (Terminal 2)
 
+```bash
 cd evrp_india
 
 .venv/bin/activate
