@@ -10,7 +10,7 @@ This repository implements a **time-optimal Electric Vehicle Routing Problem (EV
 
 - Physics-based EV energy consumption modeling
 
-- Probabilistic charging station availability
+- Probabilistic charging station availability (https://github.com/suharoy/evrp_charge_availability_backend)
 
 - Charging-aware route planning
 
