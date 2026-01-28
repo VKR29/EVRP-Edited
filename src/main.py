@@ -18,6 +18,28 @@ from src.models.vehicle import ElectricVehicle
 from src.planner.min_time_with_charging import plan_min_time_with_one_stop
 from src.viz.map_viz import render_ev_route_with_charging
 
+# src/main.py (append/modify)
+import argparse
+import time
+from src.planner.alns_planner import alns_solve, greedy_initial_solution
+from src.planner.integration_wrappers import get_travel_time_and_energy, predict_p_success_at, recommend_chargers_fn, candidate_finder
+
+def run_alns_example():
+    origin = (12.9716, 77.5946)      # sample lat/lon (Bengaluru)
+    destination = (13.0827, 80.2707) # sample lat/lon (Chennai)
+    initial_soc = 80
+    vehicle_kwh = 40.0
+    start_epoch = time.time()
+    init = greedy_initial_solution(origin, destination, initial_soc, vehicle_kwh,
+                                   get_travel_time_and_energy, recommend_chargers_fn, start_epoch)
+    best_sol, best_val = alns_solve(init, start_epoch,
+                                    get_travel_time_and_energy, predict_p_success_at,
+                                    recommend_chargers_fn, candidate_finder,
+                                    max_iters=2000, time_limit_seconds=30)
+    print("Best expected time (s):", best_val)
+    for i, stop in enumerate(best_sol.route_stops):
+        print(i, stop.charger_id, stop.charge_target_soc, stop.lat, stop.lon)
+
 
 def run():
     # Example coordinates (Bengaluru)
@@ -92,6 +114,12 @@ def run():
 
     print(f"\nMap saved: {out_html}  (open routes.html)")
 
-
 if __name__ == "__main__":
-    run()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--planner", choices=["single","alns"], default="alns")
+    args = parser.parse_args()
+    if args.planner == "alns":
+        run_alns_example()
+    else:
+        # existing behavior
+        pass
